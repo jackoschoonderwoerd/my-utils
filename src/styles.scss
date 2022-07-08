@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+
+.fullscreen,
+.mat-dialog-container {
+    width: 100vw !important;
+    max-width: none !important;
+    padding: 0px !important;
+    // border: 5px solid red;
+}
+
+app-fa-input {
+    height: 30px;
+}
+a {
+    text-decoration: none;
+}
