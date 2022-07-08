@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "my-utils-91637": {
+      "hosting": {
+        "my-utils": [
+          "my-utils-91637"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "my-utils-91637"
+  }
+}
