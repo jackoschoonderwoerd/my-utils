@@ -1,0 +1,15 @@
+<div class="page-container" fxLayout="column" fxLayoutGap="1rem">
+  <form [formGroup]="definitionsForm" fxLayout="column">
+    <div class="header">definitions</div>
+    <mat-form-field>
+
+      <input type="text" matInput formControlName="item" placeholder="item">
+    </mat-form-field>
+    <mat-form-field>
+
+      <textarea type="text" matInput formControlName="definition" cols="30" rows="5" placeholder="definition"></textarea>
+    </mat-form-field>
+    <button [disabled]="definitionsForm.invalid" mat-raised-button (click)=" onSubmitDefinition()">{{editmode ? 'save edits' : 'submit definition'}}</button>
+    <button mat-dialog-close mat-raised-button>cancel</button>
+  </form>
+</div>

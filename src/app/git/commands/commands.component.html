@@ -1,0 +1,28 @@
+<div class="page-container" fxLayout="column" fxLayoutGap="1rem">
+
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="command">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> command </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"> {{element.command}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="effect">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> effect </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"> {{element.effect}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> edit </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"><button (click)="onEdit(element)">edit</button> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> delete </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"><button (click)="onDelete(element.id)">delete</button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+  <button color="primary" mat-raised-button (click)="onAddCommand()">add command</button>
+</div>

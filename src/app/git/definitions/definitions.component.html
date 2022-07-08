@@ -1,0 +1,27 @@
+<div class="page-container" fxLayout="column" fxLayoutGap="1rem">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="item">
+      <mat-header-cell *matHeaderCellDef> item </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.item}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="definition">
+      <mat-header-cell *matHeaderCellDef> definition </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.definition}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> edit </mat-header-cell>
+      <mat-cell *matCellDef="let element"><button (click)="onEdit(element)">edit</button> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> delete </mat-header-cell>
+      <mat-cell *matCellDef="let element"><button (click)="onDelete(element.id)">delete</button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+  <button mat-raised-button color="primary" (click)="onAddDefinition()">add definition</button>
+</div>
