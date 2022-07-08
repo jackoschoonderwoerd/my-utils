@@ -1,0 +1,11 @@
+<button
+    
+    mat-raised-button
+    (click)="onAddClass()"
+    [disabled]="classIsAdded">
+    add class
+</button>
+
+
+
+<div class="green" [ngClass]="{animated: classIsAdded, fadeOut: classIsAdded}" class="test-div"></div>

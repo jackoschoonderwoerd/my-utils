@@ -1,0 +1,12 @@
+.page-container {
+    height: 100%;
+    padding: 1rem;
+    background-color: bisque;
+    .child-elements {
+        .child-element {
+        }
+    }
+}
+.stripe {
+    border: 1px solid blue !important;
+}

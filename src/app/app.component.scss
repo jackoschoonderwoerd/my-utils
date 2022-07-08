@@ -1,0 +1,19 @@
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    // .ng-advanced {
+    //     max-width: 1rem;
+    // }
+    ul {
+        list-style: none;
+        li {
+        }
+    }
+}
+.router-container {
+    padding: 5rem;
+    height: calc(100vh - 74px);
+    border: 5px solid #ccc;
+    margin-top: 64px;
+}

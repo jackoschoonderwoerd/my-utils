@@ -1,0 +1,39 @@
+.test-div {
+    height: 150px;
+    width: 150px;
+    border: 1px solid black;
+    // background-color: red;
+}
+.green {
+    background-color: green;
+}
+
+.animated {
+    // -webkit-animation-duration: 1000ms;
+    animation-duration: 1000ms;
+    // -webkit-animation-fill-mode: both;animation-fill-mode: both;
+}
+
+@keyframes fadeOut {
+    0% {
+        background-color: green;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.fadeOut {
+    // -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

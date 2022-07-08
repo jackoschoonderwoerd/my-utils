@@ -1,0 +1,17 @@
+<div class="buttons">
+    <button [mat-dialog-close]="'previous'">previous</button>
+    <button mat-dialog-close>close</button>
+    <button [mat-dialog-close]="'next'">next</button>
+</div>
+<div
+    *ngIf="portrait" 
+    class="portrait-container"
+    [ngStyle]="{width: determinePosition()}">
+    <img class="portrait-image" [src]="imagePath" alt="">
+</div>
+
+<div 
+    *ngIf="landscape" class="landscape-container"
+    [ngStyle]="{width: determinePosition()}">
+    <img class="landscape-image" [src]="imagePath" alt="">
+</div>

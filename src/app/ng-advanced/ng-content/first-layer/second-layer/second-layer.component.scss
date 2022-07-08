@@ -1,0 +1,22 @@
+// :host : border ? {display: block}
+
+// SELECTORS ATTACKING THE ELEMENT AFTER IT'S BEEN PASSED ON
+// WORKING SORT OF BACKWARDS
+:host {
+    border: 2px solid dimgray;
+    display: block;
+    padding: 20px;
+}
+
+// attacs only itself, doesn't do anything
+:host div {
+    color: red;
+}
+
+// attacs the elements inside in the component that is being passed on
+:host ::ng-deep .first-div {
+    color: blue;
+}
+:host ::ng-deep .second-div {
+    color: green;
+}

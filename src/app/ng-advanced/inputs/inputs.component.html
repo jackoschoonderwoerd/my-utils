@@ -1,0 +1,21 @@
+<div class="page-container fa-input-red-theme">
+  <div class="child-elements"
+    fxLayout="column"
+    fxLayoutGap="1rem">
+    <input type="text" placeholder="normal">
+    <div
+      class="child-element"
+      *ngFor="let placeholderIcon of placeholderIcons">
+      <app-fa-input [icon]="placeholderIcon.icon" [class]="placeholderIcon.placeholder">
+
+        <input
+
+          type="text"
+          [name]="placeholderIcon.placeholder"
+          [placeholder]="[placeholderIcon.placeholder]"
+          autocomplete="off"
+          class="test-class">
+      </app-fa-input>
+    </div>
+  </div>
+</div>
