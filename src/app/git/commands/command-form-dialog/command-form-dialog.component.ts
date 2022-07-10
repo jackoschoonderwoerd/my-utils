@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { GitService, Command } from '../../git.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -22,46 +22,74 @@ export class CommandFormDialogComponent implements OnInit {
 
     ngOnInit(): void {
         this.initCommandsForm()
-        this.dialogRef.updateSize('310px');
+        this.dialogRef.updateSize('500px');
         if (this.data) {
+            console.log(this.data)
+            const command: Command = this.data.command
             this.editmode = true;
             this.commandsForm.patchValue({
                 command: this.data.command.command,
-                effect: this.data.command.effect
-            })
+            });
+            this.fillArrayWithEffectListItems(command.effectListItems)
+
         }
+        console.log(this.editmode);
 
 
+    }
+    fillArrayWithEffectListItems(effectListItems: string[]) {
+        const controls: FormControl[] = [];
+        effectListItems.forEach((effectListItem: string) => {
+            controls.push(new FormControl(effectListItem))
+        })
+        controls.forEach((control: FormControl) => {
+            (<FormArray>this.commandsForm.get('effectListItems')).push(control)
+        })
     }
     initCommandsForm() {
         this.commandsForm = this.fb.group({
             command: new FormControl(null, [Validators.required]),
-            effect: new FormControl(null, [Validators.required])
+            effectListItems: new FormArray([])
         })
+    }
+
+    getInstrumentControls() {
+        return (<FormArray>this.commandsForm.get('effectListItems')).controls;
+    }
+
+    onAddEffectListItem() {
+        const control = new FormControl(null);
+        (<FormArray>this.commandsForm.get('effectListItems')).push(control);
     }
 
 
     onSubmitCommand() {
         const command: Command = {
             command: this.commandsForm.value.command,
-            effect: this.commandsForm.value.effect
+            effectListItems: this.commandsForm.value.effectListItems
         }
         if (!this.editmode) {
             this.gitService.addCommand(command)
-                .then((res: any) => {
-                    console.log(res)
-                    this.dialogRef.close();
+                .then(res => {
+                    this.dialogRef.close()
                 })
                 .catch(err => console.log(err));
         } else {
             command.id = this.data.command.id;
+            console.log(command)
+            command.effectListItems = command.effectListItems.filter((effectListItem) => {
+                return effectListItem != null;
+            });
+            command.effectListItems = command.effectListItems.filter((effectListItem) => {
+                return effectListItem != '';
+            });
             this.gitService.editCommand(command)
                 .then(res => {
-                    console.log(res)
                     this.dialogRef.close()
                 })
                 .catch(err => console.log(err));
         }
+
     }
 
 }

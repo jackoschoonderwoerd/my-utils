@@ -1,4 +1,33 @@
-mat-header-cell,
-mat-cell {
-    padding: 0 1rem;
+* {
+    font-size: 0.8rem;
+}
+.page-container {
+    .definitions {
+        margin: 0;
+        padding: 0;
+        .definition {
+            border-bottom: 1px solid #ccc;
+            .topic {
+                width: 16rem;
+            }
+            .definition-list-items {
+                margin: 0;
+                width: 100%;
+            }
+            .buttons {
+                width: 3;
+                height: 0.5rem;
+                .edit {
+                    color: green;
+                    font-weight: bolder;
+                    cursor: pointer;
+                }
+                .delete {
+                    color: red;
+                    font-weight: bolder;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }

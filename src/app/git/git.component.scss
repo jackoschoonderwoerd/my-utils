@@ -1,11 +1,5 @@
 .page-container {
     mat-tab-group {
-        width: calc((100% / 3) * 2);
-    }
-    .app-forms-container {
-        width: calc(100% / 3);
-        background-color: #ccc;
-        height: 100%;
-        padding: 1rem;
+        width: 100%;
     }
 }

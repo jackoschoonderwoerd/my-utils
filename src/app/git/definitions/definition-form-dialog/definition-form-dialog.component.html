@@ -2,14 +2,40 @@
   <form [formGroup]="definitionsForm" fxLayout="column">
     <div class="header">definitions</div>
     <mat-form-field>
-
-      <input type="text" matInput formControlName="item" placeholder="item">
+      <input type="text" matInput formControlName="topic" placeholder="topic">
     </mat-form-field>
-    <mat-form-field>
 
-      <textarea type="text" matInput formControlName="definition" cols="30" rows="5" placeholder="definition"></textarea>
-    </mat-form-field>
-    <button [disabled]="definitionsForm.invalid" mat-raised-button (click)=" onSubmitDefinition()">{{editmode ? 'save edits' : 'submit definition'}}</button>
+    <div class="definition-list-items" formArrayName="definitionListItems">
+      <div
+        class="form-group"
+        *ngFor=" let instrumentControl of getInstrumentControls(); let i = index">
+        <mat-form-field>
+          <textarea
+            matInput
+            type="text"
+            class="form-control"
+            [formControlName]="i"
+            rows="2"
+
+
+            placeholder="definition list item">
+          </textarea>
+        </mat-form-field>
+      </div>
+      <button
+        class="add-definition-list-item"
+        type="button"
+        (click)="onAddDefinitionListItem()">
+        add definition list item
+      </button>
+    </div>
+
+    <button
+      [disabled]="definitionsForm.invalid"
+      mat-raised-button
+      (click)=" onSubmitDefinition()">
+      {{editmode ? 'save edits' : 'submit definition'}}
+    </button>
     <button mat-dialog-close mat-raised-button>cancel</button>
   </form>
 </div>

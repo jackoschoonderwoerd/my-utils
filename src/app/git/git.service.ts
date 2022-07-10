@@ -19,13 +19,13 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface Definition {
     id?: string;
-    item: string;
-    definition: string
+    topic: string
+    definitionListItems: string[];
 }
 export interface Command {
     id?: string;
     command: string,
-    effect: string
+    effectListItems: string[]
 }
 
 @Injectable({
@@ -41,12 +41,14 @@ export class GitService {
     constructor(private fs: Firestore) { }
 
     addDefinition(definition: Definition) {
+        console.log(definition)
         const definitionRef = collection(this.fs, 'git/data/definitions');
         return addDoc(definitionRef, definition)
     }
     getDefinitions() {
         const definitionsRef = collection(this.fs, 'git/data/definitions');
-        return collectionData(definitionsRef, { idField: 'id' })
+        const definitionsByTopicRef = query(definitionsRef, orderBy('topic'))
+        return collectionData(definitionsByTopicRef, { idField: 'id' }) as Observable<Definition[]>
     }
     editDefinition(definition: Definition) {
         console.log(definition)
@@ -55,6 +57,7 @@ export class GitService {
     }
     deleteDefinition(id: string) {
         const definitionRef = doc(this.fs, `git/data/definitions/${id}`);
+
         return deleteDoc(definitionRef)
     }
 

@@ -12,8 +12,8 @@ mat-toolbar {
     }
 }
 .router-container {
-    padding: 5rem;
-    height: calc(100vh - 74px);
+    padding: 1rem 3rem;
+    min-height: calc(100vh - 74px);
     border: 5px solid #ccc;
     margin-top: 64px;
 }

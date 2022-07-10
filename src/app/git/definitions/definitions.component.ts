@@ -13,11 +13,10 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 })
 export class DefinitionsComponent implements OnInit {
 
-    // definitions$: Observable<Definition[]>
-    // definitions: Definition[]
-    dataSource = new MatTableDataSource<Definition>();
+    definitions$: Observable<Definition[]>
+    definitions: Definition[]
 
-    displayedColumns: string[] = ['item', 'definition', 'edit', 'delete'];
+
 
     constructor(
         private gitService: GitService,
@@ -25,11 +24,10 @@ export class DefinitionsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.gitService.getDefinitions().subscribe((definitions: Definition[]) => {
-            // this.definitions = definitions;
-            this.dataSource.data = definitions;
-            // console.log(this.dataSource.data);
-        });
+        this.definitions$ = this.gitService.getDefinitions()
+    }
+    onAddDefinition() {
+        this.dialog.open(DefinitionFormDialogComponent)
     }
     onEdit(definition: Definition) {
         console.log(definition)
@@ -38,9 +36,6 @@ export class DefinitionsComponent implements OnInit {
                 definition
             }
         })
-    }
-    onAddDefinition() {
-        this.dialog.open(DefinitionFormDialogComponent)
     }
     onDelete(id: string) {
         const dialogRef: MatDialogRef<any> = this.dialog.open(ConfirmationDialogComponent)
@@ -53,7 +48,5 @@ export class DefinitionsComponent implements OnInit {
                     .catch(err => console.log(err));
             }
         })
-
     }
-
 }

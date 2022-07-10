@@ -1,3 +1,17 @@
 .page-container {
     padding: 1rem;
+    form {
+        .header {
+        }
+        mat-form-field {
+        }
+        .definition-list-items {
+            .form-group {
+                mat-form-field {
+                    // border: 3px solid red;
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

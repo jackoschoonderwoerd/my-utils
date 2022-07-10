@@ -14,9 +14,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class CommandsComponent implements OnInit {
 
 
-    dataSource = new MatTableDataSource<Command>();
-
-    displayedColumns: string[] = ['command', 'effect', 'edit', 'delete'];
+    commands$: Observable<Command[]>
 
 
     constructor(
@@ -27,13 +25,19 @@ export class CommandsComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.gitService.getCommands().subscribe((commands: Command[]) => {
-            this.dataSource.data = commands
-        })
+        this.commands$ = this.gitService.getCommands()
+
     }
 
     onAddCommand() {
         this.dialog.open(CommandFormDialogComponent);
+    }
+    onEdit(command: Command) {
+        this.dialog.open(CommandFormDialogComponent, {
+            data: {
+                command
+            }
+        })
     }
     onDelete(id: string) {
         const dialogRef = this.dialog.open(ConfirmationDialogComponent);
@@ -47,12 +51,4 @@ export class CommandsComponent implements OnInit {
             }
         })
     }
-    onEdit(command: Command) {
-        this.dialog.open(CommandFormDialogComponent, {
-            data: {
-                command
-            }
-        })
-    }
-
 }

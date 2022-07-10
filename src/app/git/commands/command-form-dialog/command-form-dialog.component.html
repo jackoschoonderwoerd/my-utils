@@ -3,12 +3,26 @@
     <div class="heCommand">definitions</div>
     <mat-form-field>
 
-      <input type="text" matInput formControlName="command" placeholder="item">
+      <input type="text" matInput formControlName="command" placeholder="command">
     </mat-form-field>
-    <mat-form-field>
+    <div class="command-list-items" formArrayName="effectListItems">
+      <div class="form-group"
+        *ngFor="let instrumentControl of getInstrumentControls(); let i = index">
 
-      <textarea type="text" matInput formControlName="effect" cols="30" rows="5" placeholder="definition"></textarea>
-    </mat-form-field>
+        <mat-form-field>
+          <textarea
+            type="text"
+            matInput
+            [formControlName]="i"
+            rows="2"
+            placeholder="command list item">
+          </textarea>
+        </mat-form-field>
+      </div>
+      <button
+        class="add-command-list-item" (click)="onAddEffectListItem()">add command list item
+      </button>
+    </div>
     <button
       [disabled]="commandsForm.invalid"
       mat-raised-button
