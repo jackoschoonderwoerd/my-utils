@@ -8,7 +8,10 @@
         .command {
             border-bottom: 1px solid #ccc;
             .command-command {
+                padding: 0 1rem;
                 width: 16rem;
+                text-indent: -1rem;
+                line-height: 1rem;
             }
             .command-list-items {
                 margin: 0;

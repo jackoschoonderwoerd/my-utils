@@ -1,3 +1,16 @@
 .page-container {
     padding: 1rem;
+    form {
+        .header {
+        }
+        mat-form-field {
+        }
+        .command-list-items {
+            .form-group {
+                mat-form-field {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

@@ -58,6 +58,8 @@ export class AuthService {
             )
     }
     logout() {
+        console.log('logout')
         this.isLoggedInSubject.next(false);
+        localStorage.removeItem('auth_data')
     }
 }

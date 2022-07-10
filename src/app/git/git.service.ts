@@ -40,6 +40,8 @@ export class GitService {
 
     constructor(private fs: Firestore) { }
 
+    // DEFINITIONS
+
     addDefinition(definition: Definition) {
         console.log(definition)
         const definitionRef = collection(this.fs, 'git/data/definitions');
@@ -57,9 +59,10 @@ export class GitService {
     }
     deleteDefinition(id: string) {
         const definitionRef = doc(this.fs, `git/data/definitions/${id}`);
-
         return deleteDoc(definitionRef)
     }
+
+    // COMMANDS
 
     addCommand(command: Command) {
         const commandRef = collection(this.fs, 'git/data/commands');
@@ -67,7 +70,8 @@ export class GitService {
     }
     getCommands() {
         const commandsRef = collection(this.fs, 'git/data/commands');
-        return collectionData(commandsRef, { idField: 'id' }) as Observable<Command[]>
+        const sortedCommandsRef = query(commandsRef, orderBy('command'))
+        return collectionData(sortedCommandsRef, { idField: 'id' }) as Observable<Command[]>
     }
     editCommand(command: Command) {
         const commandRef = doc(this.fs, `git/data/commands/${command.id}`)
