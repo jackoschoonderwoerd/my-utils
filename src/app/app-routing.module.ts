@@ -8,11 +8,11 @@ const routes: Routes = [
     },
     {
         path: 'progress-bar',
-        loadChildren: () => import('./progress-bar/progress-bar.module').then(m => m.ProgressBarModule)
+        loadChildren: () => import('./projects/progress-bar/progress-bar.module').then(m => m.ProgressBarModule)
     },
     {
         path: 'ng-class',
-        loadChildren: () => import('./ng-class/ng-class.module').then(m => m.NgClassModule)
+        loadChildren: () => import('./projects/ng-class/ng-class.module').then(m => m.NgClassModule)
     },
     {
         path: 'css',
@@ -20,7 +20,7 @@ const routes: Routes = [
     },
     {
         path: 'scroll',
-        loadChildren: () => import('./scroll/scroll.module').then(m => m.ScrollModule)
+        loadChildren: () => import('./projects/scroll/scroll.module').then(m => m.ScrollModule)
     },
 
     {
