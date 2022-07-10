@@ -16,7 +16,7 @@ const routes: Routes = [
     },
     {
         path: 'css',
-        loadChildren: () => import('./css-the-complete-guide/css-the-complete-guide.module').then(m => m.CssTheCompleteGuideModule)
+        loadChildren: () => import('./projects/css-the-complete-guide/css-the-complete-guide.module').then(m => m.CssTheCompleteGuideModule)
     },
     {
         path: 'scroll',
