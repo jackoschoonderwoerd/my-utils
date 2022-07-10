@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'app-git',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GitComponent implements OnInit {
 
-    constructor(
+    message: string = 'You need to be logged in to see the data'
 
+    constructor(
+        public auth: AuthService
     ) { }
 
     ngOnInit(): void {

@@ -61,5 +61,6 @@ export class AuthService {
         console.log('logout')
         this.isLoggedInSubject.next(false);
         localStorage.removeItem('auth_data')
+        this.auth.signOut()
     }
 }
