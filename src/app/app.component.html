@@ -1,29 +1,34 @@
 <mat-toolbar>
-  <ul fxLayout fxLayoutGap="1rem">
-    <li><a routerLink="my-semi-swipe">my-semi-swipe</a></li>
-    <li><a routerLink="progress-bar">progress-bar</a></li>
-    <li><a routerLink="ng-class">ng-class</a></li>
-    <li><a routerLink="scroll">scroll</a></li>
-    <li> <button (click)="onPrevious()">Previous</button>
-      <button (click)="onNext()">Next</button></li>
-    <li>
-      <button mat-button [matMenuTriggerFor]="ngAdvancedMenu">ng-advanced</button>
-      <mat-menu #ngAdvancedMenu="matMenu">
-        <button><a routerLink="ng-advanced/inputs">ng-advanced/inputs</a></button>
-        <button><a routerLink="ng-advanced/tab-container">ng-advanced/tab-container</a></button>
-        <button><a routerLink="ng-advanced/ng-content">ng-advanced/ng-content</a></button>
-        <button><a routerLink="ng-advanced/css-host">ng-advanced/css-host</a></button>
-        <button><a routerLink="ng-advanced/css-host-context">ng-advanced/css-host-context</a></button>
-      </mat-menu>
-    </li>
-    <li><a routerLink="git">git</a></li>
-    <li *ngIf="!(auth.isLoggedIn$|async)"><a routerLink="auth/login">login</a></li>
-    <li *ngIf="!(auth.isLoggedIn$|async)"><a routerLink="auth/signup">signup</a></li>
-    <li *ngIf="(auth.isLoggedIn$|async)" (click)="onLogOut()">logout</li>
+    <ul fxLayout
+        fxLayoutGap="1rem">
+        <li><a routerLink="my-semi-swipe">my-semi-swipe</a></li>
+        <li><a routerLink="progress-bar">progress-bar</a></li>
+        <li><a routerLink="ng-class">ng-class</a></li>
+        <li><a routerLink="scroll">scroll</a></li>
+        <li><a routerLink="print">print</a></li>
 
-  </ul>
+        <li> <button (click)="onPrevious()">Previous</button>
+            <button (click)="onNext()">Next</button></li>
+        <li>
+            <button mat-button
+                [matMenuTriggerFor]="ngAdvancedMenu">ng-advanced</button>
+            <mat-menu #ngAdvancedMenu="matMenu">
+                <button><a routerLink="ng-advanced/inputs">ng-advanced/inputs</a></button>
+                <button><a routerLink="ng-advanced/tab-container">ng-advanced/tab-container</a></button>
+                <button><a routerLink="ng-advanced/ng-content">ng-advanced/ng-content</a></button>
+                <button><a routerLink="ng-advanced/css-host">ng-advanced/css-host</a></button>
+                <button><a routerLink="ng-advanced/css-host-context">ng-advanced/css-host-context</a></button>
+            </mat-menu>
+        </li>
+        <li><a routerLink="git">git</a></li>
+        <li *ngIf="!(auth.isLoggedIn$|async)"><a routerLink="auth/login">login</a></li>
+        <li *ngIf="!(auth.isLoggedIn$|async)"><a routerLink="auth/signup">signup</a></li>
+        <li *ngIf="(auth.isLoggedIn$|async)"
+            (click)="onLogOut()">logout</li>
+
+    </ul>
 </mat-toolbar>
 
 <div class="router-container">
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </div>
