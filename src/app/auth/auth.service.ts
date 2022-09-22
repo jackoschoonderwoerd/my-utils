@@ -26,6 +26,7 @@ export interface AuthUser {
 
 export class AuthService {
 
+    authUser: AuthUser
     // private isLoggedInSubject = new BehaviorSubject<boolean>(false);
     // public isLoggedIn$ = this.isLoggedInSubject.asObservable();
     private loggedInUserSubject = new BehaviorSubject<any>(null)
@@ -40,35 +41,7 @@ export class AuthService {
             console.log(user);
             this.loggedInUserSubject.next(user)
         }
-        // auth.onIdTokenChanged({
-        //     next(user) {
-        //         console.log(user);
-        //         console.log(user.getIdToken().then((token: string) => {
-        //             console.log(token)
-        //         }))
-        //     },
-        //     error(err) {
-        //         console.log(err)
-        //     },
-        //     complete() {
-        //         console.log('complete')
-        //     }
-        // })
-        // auth.onAuthStateChanged({
-        //     next(user) {
-        //         console.log(user)
-        //         user.getIdToken()
-        //             .then((token: string) => {
-        //                 console.log(token)
-        //             })
-        //     },
-        //     error(err) {
-        //         console.log(err)
-        //     },
-        //     complete() {
-        //         console.log('authstate complete')
-        //     }
-        // })
+
     }
 
 
@@ -84,13 +57,16 @@ export class AuthService {
             .then((fireAuthUser: any) => {
                 console.log(fireAuthUser._tokenResponse.idToken);
                 console.log(fireAuthUser.user.email)
-                const authUser: AuthUser = {
+                this.authUser = {
                     email: fireAuthUser.user.email
                 }
-                this.loggedInUserSubject.next(authUser);
-                localStorage.setItem(AUTH_DATA, JSON.stringify(authUser))
+                this.loggedInUserSubject.next(this.authUser);
+                localStorage.setItem(AUTH_DATA, JSON.stringify(this.authUser))
                 return authUser
             })
+    }
+    getAuthUser() {
+        return this.authUser
     }
 
 

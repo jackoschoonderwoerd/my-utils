@@ -18,6 +18,17 @@ export class AuthComponent implements OnInit {
     authUser: any;
     spinnerActive: boolean = false;
 
+    authUsers: AuthUser[] = [
+        {
+            email: 'jackoboes@gmail.com',
+            password: '123456'
+        },
+        {
+            email: 'schoonderwoerblock@gmail.com',
+            password: '123456'
+        }
+    ]
+
 
 
     constructor(

@@ -2,6 +2,13 @@
     fxLayout="column"
     fxLayoutAlign="center"
     fxLayoutGap="1rem">
+    <div class="users">
+        <div class="auth-user"
+            *ngFor="let authUser of authUsers">
+            <div class="name">{{authUser.email}}</div>
+            <div class="password">{{authUser.password}}</div>
+        </div>
+    </div>
     <div class="not-logged-in"
         fxLayout="column"
         fxLayoutGap="1rem"
@@ -41,5 +48,5 @@
         <button mat-raised-button
             (click)="onLogOut()">Log out</button>
     </div>
-
+    <app-auth-items *ngIf="(authService.loggedInUser$|async)"></app-auth-items>
 </div>

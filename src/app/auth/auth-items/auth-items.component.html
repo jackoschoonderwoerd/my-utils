@@ -1,0 +1,26 @@
+<div class="page-container">
+    <form [formGroup]="form">
+        <mat-form-field>
+            <input type="text"
+                formControlName="name"
+                matInput
+                placeholder="name">
+        </mat-form-field>
+        <button mat-raised-button
+            (click)="onAddItem()">add item</button>
+    </form>
+    <div class="auth-items"
+        fxLayout="column"
+        fxLayoutGap=".3rem">
+        <div class="item"
+            fxLayout
+            fxLayoutAlign="space-between"
+            *ngFor="let authItem of authItems$|async">
+            <div class="name">
+                {{authItem.name}}
+            </div>
+            <button mat-raised-button
+                (click)="onDeleteAuthItem(authItem.id)">delete item</button>
+        </div>
+    </div>
+</div>

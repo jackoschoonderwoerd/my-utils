@@ -6,6 +6,9 @@ import { AuthMaterialModule } from './auth-material.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
+import { AuthItemsComponent } from './auth-items/auth-items.component';
+import { AuthConfirmComponent } from './auth-items/auth-confirm/auth-confirm.component';
+
 
 
 
@@ -15,6 +18,9 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
 
         AuthComponent,
         AuthFormComponent,
+        AuthItemsComponent,
+        AuthConfirmComponent,
+
 
     ],
     imports: [
