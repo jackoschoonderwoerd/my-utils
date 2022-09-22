@@ -1,18 +1,25 @@
-<p>print works!</p>
+<div class="page-container">
+    <a href="https://www.positronx.io/angular-pdf-tutorial-export-pdf-in-angular-with-jspdf/"
+        target="_blank">
+        https://www.positronx.io/angular-pdf-tutorial-export-pdf-in-angular-with-jspdf/
+    </a>
+    <a href="https://artskydj.github.io/jsPDF/docs/jsPDF.html">https://artskydj.github.io/jsPDF/docs/jsPDF.html</a>
+    <div id="printData"
+        class="printData">
+        <img src="./../../assets/Images/tba.jpg"
+            alt="">
 
-<a href="https://medium.com/@Idan_Co/angular-print-service-290651c721f9">https://medium.com/@Idan_Co/angular-print-service-290651c721f9</a>
-<a href="https://www.devildoxx.com/angular/print-html-angular-9/">https://www.devildoxx.com/angular/print-html-angular-9/</a>
-<div #a
-    class="section-a">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit exercitationem, sit distinctio eligendi illo praesentium at reprehenderit neque dignissimos doloremque?
-</div>
-<button (click)="onPrintA()">print A</button>
-<hr>
-<div #b>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod impedit iste hic architecto quas libero fugit quam atque. Beatae dolor accusamus nesciunt vero voluptatem corrupti est porro provident vel sunt!
-</div>
-<button (click)="onPrintB()">print B</button>
+        <ul>
+            <li *ngFor="let user of USERS">
+                <div class="id">{{user.id}}</div>
+                <div class="name">{{user.name}}</div>
+                <div class="email">{{user.email}}</div>
+                <div class="phone">{{user.phone}}</div>
+            </li>
+        </ul>
+    </div>
 
-<div class="router">
-    <router-outlet></router-outlet>
+    <button class="btn btn-success btn-block"
+        (click)="openPDF()">Download PDF
+    </button>
 </div>

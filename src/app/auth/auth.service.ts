@@ -12,7 +12,7 @@ import { BehaviorSubject, from, map, Observable, pipe, tap } from 'rxjs';
 
 const AUTH_DATA = 'auth_data'
 
-export interface User {
+export interface AuthUser {
     id?: string;
     email: string;
     password?: string;
@@ -26,40 +26,61 @@ export interface User {
 
 export class AuthService {
 
-    private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-    public isLoggedIn$ = this.isLoggedInSubject.asObservable()
+    // private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+    // public isLoggedIn$ = this.isLoggedInSubject.asObservable();
+    private loggedInUserSubject = new BehaviorSubject<any>(null)
+    public loggedInUser$ = this.loggedInUserSubject.asObservable()
 
 
     constructor(private auth: Auth) {
-        const user = localStorage.getItem(AUTH_DATA);
+        const user = JSON.parse(localStorage.getItem(AUTH_DATA));
 
         if (user) {
-            this.isLoggedInSubject.next(true)
+            console.log(user);
+            this.loggedInUserSubject.next(user)
+
         }
     }
 
-    signup(user: User) {
-        createUserWithEmailAndPassword(this.auth, user.email, user.password)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+
+    signUp(user: AuthUser) {
+        return from(createUserWithEmailAndPassword(this.auth, user.email, user.password))
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err))
     }
 
-    logIn(user: User) {
-        return from(signInWithEmailAndPassword(this.auth, user.email, user.password))
-            .pipe(
-                tap((fireAuthUser: any) => {
-                    console.log(fireAuthUser)
-                    const user: User = {
-                        email: fireAuthUser.user.email
-                    }
-                    this.isLoggedInSubject.next(true);
-                    localStorage.setItem(AUTH_DATA, JSON.stringify(user))
-                })
-            )
+    logIn(authUser: AuthUser) {
+        console.log(authUser)
+        return signInWithEmailAndPassword(this.auth, authUser.email, authUser.password)
+            .then((fireAuthUser: any) => {
+                console.log(fireAuthUser.user.email)
+                const authUser: AuthUser = {
+                    email: fireAuthUser.user.email
+                }
+                this.loggedInUserSubject.next(authUser);
+                return authUser
+            })
     }
-    logout() {
+
+    // logIn(authUser: AuthUser) {
+    //     console.log(authUser)
+    //     return from(signInWithEmailAndPassword(this.auth, authUser.email, authUser.password))
+    //         .pipe(
+    //             tap((fireAuthUser: any) => {
+    //                 console.log(fireAuthUser)
+    //                 const user: AuthUser = {
+    //                     email: fireAuthUser.user.email
+    //                 }
+    //                 this.loggedInUserSubject.next(user);
+    //                 localStorage.setItem(AUTH_DATA, JSON.stringify(user))
+    //             })
+    //         )
+    // }
+
+    logOut() {
         console.log('logout')
-        this.isLoggedInSubject.next(false);
+        // this.isLoggedInSubject.next(false);
+        this.loggedInUserSubject.next(null);
         localStorage.removeItem('auth_data')
         this.auth.signOut()
     }

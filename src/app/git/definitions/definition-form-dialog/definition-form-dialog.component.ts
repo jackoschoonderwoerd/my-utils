@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators, UntypedFormArray } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Definition, GitService } from '../../git.service';
 
@@ -10,11 +10,11 @@ import { Definition, GitService } from '../../git.service';
 })
 export class DefinitionFormDialogComponent implements OnInit {
 
-    definitionsForm: FormGroup;
+    definitionsForm: UntypedFormGroup;
     editmode: boolean = false
 
     constructor(
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private gitService: GitService,
         public dialogRef: MatDialogRef<DefinitionFormDialogComponent>,
         @Inject(MAT_DIALOG_DATA) private data: any
@@ -37,29 +37,29 @@ export class DefinitionFormDialogComponent implements OnInit {
     }
 
     fillArrayWithDefinitionListItems(definitionListItems: string[]) {
-        const controls: FormControl[] = [];
+        const controls: UntypedFormControl[] = [];
         definitionListItems.forEach((definitionListItem: string) => {
-            controls.push(new FormControl(definitionListItem))
+            controls.push(new UntypedFormControl(definitionListItem))
         })
-        controls.forEach((control: FormControl) => {
-            (<FormArray>this.definitionsForm.get('definitionListItems')).push(control)
+        controls.forEach((control: UntypedFormControl) => {
+            (<UntypedFormArray>this.definitionsForm.get('definitionListItems')).push(control)
         })
     }
 
     initDefinitionsForm() {
         this.definitionsForm = this.fb.group({
-            topic: new FormControl(null, [Validators.required]),
-            definitionListItems: new FormArray([]),
+            topic: new UntypedFormControl(null, [Validators.required]),
+            definitionListItems: new UntypedFormArray([]),
         })
     }
 
     getInstrumentControls() {
-        return (<FormArray>this.definitionsForm.get('definitionListItems')).controls;
+        return (<UntypedFormArray>this.definitionsForm.get('definitionListItems')).controls;
     }
 
     onAddDefinitionListItem() {
-        const control = new FormControl(null);
-        (<FormArray>this.definitionsForm.get('definitionListItems')).push(control);
+        const control = new UntypedFormControl(null);
+        (<UntypedFormArray>this.definitionsForm.get('definitionListItems')).push(control);
     }
 
     onSubmitDefinition() {

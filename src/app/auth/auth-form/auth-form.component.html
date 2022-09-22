@@ -1,0 +1,27 @@
+<div class="page-container"
+    fxLayout
+    fxLayoutAlign="center">
+    <form class="form"
+        [formGroup]="form"
+        fxLayout="column"
+        fxLayoutGap="1rem">
+        <div class="action">{{action === 'logIn' ? 'Logging in': 'Signing up'}}</div>
+        <mat-form-field>
+            <input matInput
+                type="text"
+                placeholder="email"
+                formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput
+                type="text"
+                placeholder="password"
+                formControlName="password">
+        </mat-form-field>
+        <div class="submit">
+            <button (click)="onSubmit()"
+                mat-raised-button>{{action === 'logIn' ? 'Log in': 'Sign up'}}</button>
+        </div>
+    </form>
+
+</div>

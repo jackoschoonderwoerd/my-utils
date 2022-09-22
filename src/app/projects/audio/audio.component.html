@@ -1,0 +1,29 @@
+<div class="page-container"
+    fxLayout="column"
+    fxLayoutGap="3rem">
+    <a href="https://www.youtube.com/watch?v=k5pUvceDQIg">
+        Firebase and Angular Tutorial - File Upload with Angular 13 Firebase V9
+    </a>
+
+    <input type="file"
+        class="file-input"
+        #fileinput
+        (change)="onUploadAudio($event)">
+
+    <div class="spinner-container"
+        *ngIf="loadingAudio; else notLoading">
+        <h1>loading</h1>
+        <!-- <mat-spinner></mat-spinner> -->
+    </div>
+
+    <div class="audio-player-container"
+        #audioPlayerContainer>
+        <header>player four</header>
+    </div>
+    <button (click)="toggleLoadingAudio()">toggle loading audio</button>
+    <button (click)="showLoadingAudio()">show loadingAudio</button>
+    <ng-template #notLoading>
+        <h1>not loading</h1>
+    </ng-template>
+
+</div>

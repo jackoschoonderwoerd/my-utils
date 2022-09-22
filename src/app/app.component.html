@@ -5,7 +5,14 @@
         <li><a routerLink="progress-bar">progress-bar</a></li>
         <li><a routerLink="ng-class">ng-class</a></li>
         <li><a routerLink="scroll">scroll</a></li>
-        <li><a routerLink="print">print</a></li>
+        <li><a routerLink="print">jspdf</a></li>
+        <li><a routerLink="qrcode-styling">qrcode-styling</a></li>
+        <li><a routerLink="share-social">share-social</a></li>
+        <li><a routerLink="audio">audio</a></li>
+        <li><a routerLink="js-qrscanner">js-qrscanner</a></li>
+
+
+
 
         <li> <button (click)="onPrevious()">Previous</button>
             <button (click)="onNext()">Next</button></li>
@@ -21,13 +28,68 @@
             </mat-menu>
         </li>
         <li><a routerLink="git">git</a></li>
-        <li *ngIf="!(auth.isLoggedIn$|async)"><a routerLink="auth/login">login</a></li>
-        <li *ngIf="!(auth.isLoggedIn$|async)"><a routerLink="auth/signup">signup</a></li>
-        <li *ngIf="(auth.isLoggedIn$|async)"
+        <li *ngIf="!(auth.loggedInUser$|async)"><a routerLink="auth/login">login</a></li>
+        <li *ngIf="!(auth.loggedInUser$|async)"><a routerLink="auth/signup">signup</a></li>
+        <li *ngIf="!(auth.loggedInUser$|async)"><a routerLink="auth">auth</a></li>
+        <li *ngIf="(auth.loggedInUser$|async)"
             (click)="onLogOut()">logout</li>
 
     </ul>
 </mat-toolbar>
+<!-- <p>js-qrscanner works!</p>
+<div class="row-element-set row-element-set-QRScanner">
+    <h1>JsQRScanner example</h1>
+    <div class="row-element">
+        <div class="FlexPanel detailsPanel QRScannerShort">
+            <div class="FlexPanel shortInfoPanel">
+                <div class="gwt-HTML">
+                    Point the webcam to a QR code.
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row-element">
+        <div class="qrscanner"
+            id="scanner">
+        </div>
+    </div>
+    <div class="row-element">
+        <div class="form-field form-field-memo">
+            <div class="form-field-caption-panel">
+                <div class="gwt-Label form-field-caption">
+                    Scanned text
+                </div>
+            </div>
+            <div class="FlexPanel form-field-input-panel">
+                <textarea id="scannedTextMemo"
+                    class="textInput form-memo form-field-input textInput-readonly"
+                    rows="3"
+                    readonly>
+            </textarea>
+            </div>
+        </div>
+        <div class="form-field form-field-memo">
+            <div class="form-field-caption-panel">
+                <div class="gwt-Label form-field-caption">
+                    Scanned text history
+                </div>
+            </div>
+            <div class="FlexPanel form-field-input-panel">
+                <textarea id="scannedTextMemoHist"
+                    class="textInput form-memo form-field-input textInput-readonly"
+                    value=""
+                    rows="6"
+                    readonly>
+            </textarea>
+            </div>
+        </div>
+    </div>
+    <br>
+    <a style="font-weight: bold;"
+        href="https://github.com/jbialobr/JsQRScanner">The source code is hosted on GitHub</a>
+</div> -->
+
 
 <div class="router-container">
     <router-outlet></router-outlet>

@@ -1,0 +1,12 @@
+.page-container {
+    padding: 2rem;
+    border: 1px solid black;
+    .form {
+        max-width: 16rem;
+        .action {
+            text-transform: uppercase;
+            padding: 0.3rem;
+            border: 2px solid red;
+        }
+    }
+}

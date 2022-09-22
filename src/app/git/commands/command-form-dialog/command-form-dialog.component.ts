@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators, UntypedFormArray } from '@angular/forms';
 import { GitService, Command } from '../../git.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -10,11 +10,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class CommandFormDialogComponent implements OnInit {
 
-    commandsForm: FormGroup;
+    commandsForm: UntypedFormGroup;
     editmode: boolean = false;
 
     constructor(
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private gitService: GitService,
         private dialogRef: MatDialogRef<CommandFormDialogComponent>,
         @Inject(MAT_DIALOG_DATA) private data: any
@@ -38,28 +38,28 @@ export class CommandFormDialogComponent implements OnInit {
 
     }
     fillArrayWithEffectListItems(effectListItems: string[]) {
-        const controls: FormControl[] = [];
+        const controls: UntypedFormControl[] = [];
         effectListItems.forEach((effectListItem: string) => {
-            controls.push(new FormControl(effectListItem))
+            controls.push(new UntypedFormControl(effectListItem))
         })
-        controls.forEach((control: FormControl) => {
-            (<FormArray>this.commandsForm.get('effectListItems')).push(control)
+        controls.forEach((control: UntypedFormControl) => {
+            (<UntypedFormArray>this.commandsForm.get('effectListItems')).push(control)
         })
     }
     initCommandsForm() {
         this.commandsForm = this.fb.group({
-            command: new FormControl(null, [Validators.required]),
-            effectListItems: new FormArray([])
+            command: new UntypedFormControl(null, [Validators.required]),
+            effectListItems: new UntypedFormArray([])
         })
     }
 
     getInstrumentControls() {
-        return (<FormArray>this.commandsForm.get('effectListItems')).controls;
+        return (<UntypedFormArray>this.commandsForm.get('effectListItems')).controls;
     }
 
     onAddEffectListItem() {
-        const control = new FormControl(null);
-        (<FormArray>this.commandsForm.get('effectListItems')).push(control);
+        const control = new UntypedFormControl(null);
+        (<UntypedFormArray>this.commandsForm.get('effectListItems')).push(control);
     }
 
 

@@ -1,0 +1,49 @@
+<div class="page-container"
+    fxLayout="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="1rem">
+    <div class="not-logged-in"
+        fxLayout="column"
+        fxLayoutGap="1rem"
+        *ngIf="!(authService.loggedInUser$|async)">
+        <button mat-raised-button
+            (click)="onSetAction('reset')">reset</button>
+        <div class="choice"
+            [ngStyle]="{'visibility': (action !== 'reset') ? 'hidden' : 'visible'}">
+            make a choice
+        </div>
+        <div class="select"
+            fxLayout
+            fxLayoutGap="1rem">
+            <button mat-raised-button
+                [ngClass]="{'action-selected': action === 'logIn'}"
+                (click)="onSetAction('logIn')">log in</button>
+            <button mat-raised-button
+                (click)="onSetAction('signUp')"
+                [ngClass]="{'action-selected': action === 'signUp'}">sign up</button>
+        </div>
+
+
+        <app-auth-form *ngIf="action !== 'reset'"
+            [action]="action"
+            (formData)="formDataReceived($event)"></app-auth-form>
+    </div>
+    <div class="spinner-container"
+        fxLayout
+        fxLayoutAlign="center">
+        <mat-spinner *ngIf="spinnerActive"></mat-spinner>
+    </div>
+    <div class="is-logged-in"
+        fxLayout
+        fxLayoutGap="1rem"
+        *ngIf="(authService.loggedInUser$|async)">
+        <div class="user">{{(authService.loggedInUser$|async)?.email}}</div>
+        <button mat-raised-button
+            (click)="onLogOut()">Log out</button>
+    </div>
+    <hr>
+    <div id="firebase-auth-container"
+        class="auth-container">
+        <h4>firebase-auth-container</h4>
+    </div>
+</div>

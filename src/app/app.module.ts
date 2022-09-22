@@ -13,6 +13,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+// import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,6 +28,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
         BrowserAnimationsModule,
         AppMaterialModule,
         FlexLayoutModule,
+        ReactiveFormsModule,
 
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),

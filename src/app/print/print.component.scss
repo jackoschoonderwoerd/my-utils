@@ -1,12 +1,18 @@
-// @media print {
-//     app-root > * {
-//         display: none;
-//     }
-//     app-root app-print-layout {
-//         display: block;
-//     }
-// }
-
-.router {
-    border: 3px solid blue;
+.page-container {
+    border: 5px solid blue;
+    width: 100%;
+    a {
+    }
+    .printData {
+        padding: 3rem;
+        border: 2px solid red;
+        width: 100%;
+        ul {
+            border: 3px solid green;
+            max-width: 300px;
+            margin: auto;
+            li {
+            }
+        }
+    }
 }

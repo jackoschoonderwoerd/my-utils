@@ -1,12 +1,16 @@
-<div class="page-container" fxLayout fxLayoutGap="1rem">
-  <div class="message" *ngIf="!(auth.isLoggedIn$|async)">{{message}}</div>
-  <mat-tab-group mat-align-tabs="center" *ngIf="(auth.isLoggedIn$|async)">
-    <mat-tab label="Definitions">
-      <app-definitions></app-definitions>
-    </mat-tab>
-    <mat-tab label="Commands">
-      <app-commands></app-commands>
-    </mat-tab>
-  </mat-tab-group>
+<div class="page-container"
+    fxLayout
+    fxLayoutGap="1rem">
+    <div class="message"
+        *ngIf="!(auth.loggedInUser$|async)">{{message}}</div>
+    <mat-tab-group mat-align-tabs="center"
+        *ngIf="(auth.loggedInUser$|async)">
+        <mat-tab label="Definitions">
+            <app-definitions></app-definitions>
+        </mat-tab>
+        <mat-tab label="Commands">
+            <app-commands></app-commands>
+        </mat-tab>
+    </mat-tab-group>
 
 </div>
