@@ -33,13 +33,42 @@ export class AuthService {
 
 
     constructor(private auth: Auth) {
+
         const user = JSON.parse(localStorage.getItem(AUTH_DATA));
 
         if (user) {
             console.log(user);
             this.loggedInUserSubject.next(user)
-
         }
+        // auth.onIdTokenChanged({
+        //     next(user) {
+        //         console.log(user);
+        //         console.log(user.getIdToken().then((token: string) => {
+        //             console.log(token)
+        //         }))
+        //     },
+        //     error(err) {
+        //         console.log(err)
+        //     },
+        //     complete() {
+        //         console.log('complete')
+        //     }
+        // })
+        // auth.onAuthStateChanged({
+        //     next(user) {
+        //         console.log(user)
+        //         user.getIdToken()
+        //             .then((token: string) => {
+        //                 console.log(token)
+        //             })
+        //     },
+        //     error(err) {
+        //         console.log(err)
+        //     },
+        //     complete() {
+        //         console.log('authstate complete')
+        //     }
+        // })
     }
 
 
@@ -53,14 +82,18 @@ export class AuthService {
         console.log(authUser)
         return signInWithEmailAndPassword(this.auth, authUser.email, authUser.password)
             .then((fireAuthUser: any) => {
+                console.log(fireAuthUser._tokenResponse.idToken);
                 console.log(fireAuthUser.user.email)
                 const authUser: AuthUser = {
                     email: fireAuthUser.user.email
                 }
                 this.loggedInUserSubject.next(authUser);
+                localStorage.setItem(AUTH_DATA, JSON.stringify(authUser))
                 return authUser
             })
     }
+
+
 
     // logIn(authUser: AuthUser) {
     //     console.log(authUser)

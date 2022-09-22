@@ -47,7 +47,8 @@ export class AuthComponent implements OnInit {
         //     this.spinnerActive = false;
         // })
         this.authService.logIn(authUser)
-            .then((authUser: AuthUser) => {
+            .then((authUser) => {
+                console.log(authUser);
                 if (authUser.email) {
                     console.log(authUser);
                 } else {
